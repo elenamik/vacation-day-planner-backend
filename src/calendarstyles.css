@@ -1,0 +1,52 @@
+.month{
+    width:49%;
+    font-family:sans-serif;
+    float:left;
+    padding:2px;
+}
+
+.month-header{
+    width:100%;
+	text-align:center;
+    background:purple;
+    font-size:1.5em;
+    color:white;
+    padding:5px 0px 5px 0px; 
+}
+
+.day-header{
+    background:#cc99ff;
+    text-align:center;
+}
+
+table, th, td{
+	width:100%;
+    table-layout:fixed;
+    text-align:left;
+    vertical-align:top;
+    border-collapse:collapse;
+    border: solid thin;
+    font-size: 10px;
+    float:center;
+    table-layout: fixed;
+}
+
+td{
+	height:50px;
+    background-color:#ddd;
+    word-wrap:break-word;
+    list-style-type: none
+}
+
+.event{
+	background-color:#ffffb3;
+}
+
+.days-left-text{
+    font-size:12px;
+}
+
+.calendar{
+    text-align:center;
+
+}

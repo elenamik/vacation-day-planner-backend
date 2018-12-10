@@ -1,0 +1,36 @@
+
+TODO
+
+REFACTORING:
+- !!!
+- change structure of files (in src)
+- make form its own component if possible? - its possible
+- fix use of state in day (inputted day)
+
+FIX INPUTTING:
+- do not delete input upon clicking again
+- holidays different from inputted events
+- make input box look nicer?
+- dont allow input if there is no day number
+
+FORMATTING:
+- do not have submit be larger than cell
+- the month header is like one pixel off :)) maybe add a border?
+- make it look prettier (material-ui or something similar)
+
+LOGIC:
+- days left algorithm
+- update days left and trickle down to children
+
+SECURITY:
+- write library to sanitize input 
+
+long ways away:
+- link to account (will need to store on server-side, whole other mess)
+- user can choose colors of events?
+- header/routing
+- switching modes - accrued, all total
+- choosing how many days are off/ accrued
+- expand box to reveal/add more granular details
+
+*/

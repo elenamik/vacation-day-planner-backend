@@ -1,16 +1,17 @@
 const holidays =[
-{1:"New Years Day",15:"MLK Day"},
-{19:"Washington's Birthday"},
-{30:"Good Friday"},
+{1:["New Years Day"],15:["MLK Day"]},
+{19:["Washington's Birthday"]},
+{30:["Good Friday"]},
 {},
-{28:"Memorial Day"},
+{28:["Memorial Day"]},
 {},
-{4:"Independance Day"},
+{4:["Independance Day"]},
 {},
-{3:"Labor Day"},
+{3:["Labor Day"]},
 {},
-{22:"Thanksgiving"},
-{25:"Christmas"}];
+{22:["Thanksgiving"]},
+{25:["Christmas"]}
+];
 
 export const generateRowData=(month,year) =>{
     // general starting data

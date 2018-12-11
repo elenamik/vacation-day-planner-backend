@@ -1,0 +1,12 @@
+MORE INTUITIVE EXPERIENCE:
+    can automatically type when clicked, add cursor right away
+    add redux :-(-:
+    input holidays - will automatically set type=holiday
+    put x button to cancel current input
+    when clicked, can delete any typed event
+    can click an event to change value
+
+LONG WAYS AWAY:
+    window to put in own holidays
+    saving and loading notes/configuration to account
+    configurable colors(UI)

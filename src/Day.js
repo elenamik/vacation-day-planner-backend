@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Note from './Note'
 import Textbox from './Textbox';
+import {Handler} from './App2';
 
 class Day extends Component{
     // render events
@@ -11,7 +12,7 @@ class Day extends Component{
     constructor(props){
         super(props);
         this.state={
-            note_list: ["hoy"],
+            note_list: [],
             being_edited: false
         }
     }
@@ -30,34 +31,20 @@ class Day extends Component{
 
     }
 
-    handleInput(text){
-        console.log("ayy "+text);
-        console.log(this.state);
-        console.log(this.state.note_list);
-                // let temp_note_list=this.state.note_list;
-                // temp_note_list.push(text);
-                // this.setState({
-                //     being_edited: false,
-                //     note_list: temp_note_list
-                // });
-                // console.log(this.state.note_list);
-
-        
-    }
-
-    onSubmit = (fields) => {
+    onSubmit = (field) => {
        
         let temp=this.state.note_list;
-        temp.push(fields["value"]);
+        temp.push(field);
         this.setState({
             note_list: temp,
             being_edited: false
         });
+  
+        this.props.updateNoteList(this.props.day_number,field);
 
     }
 
     render(){
-        console.log(this.state.note_list);
         if (!this.state.being_edited){
             return(
                 <td onClick={()=>this.handleClick()}>
@@ -71,8 +58,7 @@ class Day extends Component{
                 <td>
                     {this.props.day_number}
                     {this.generateNotes()}
-                    <div>being edited!</div>
-                    <div><Textbox onSubmit={fields => this.onSubmit(fields)} handleInput={this.handleInput}/></div>
+                    <div><Textbox onSubmit={input => this.onSubmit(input)}/></div>
                 </td>
 
             )

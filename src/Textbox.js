@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Day from './Day';
 
 class Textbox extends Component{
     constructor(props){
@@ -17,12 +16,11 @@ class Textbox extends Component{
             value: event.target.value
         });
         
-        
     }
     keyPress(event){
         if(event.keyCode == 13){
             event.preventDefault();
-            this.props.onSubmit(this.state);
+            this.props.onSubmit(this.state.value);
             return;
         }
       }

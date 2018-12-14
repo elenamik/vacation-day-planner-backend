@@ -10,6 +10,7 @@ class Month extends Component{
     
     updateNoteList(day,text,type){
         this.props.updateNoteList(this.props.month_number,day,text,type);
+
     }
 
     calculateType(index){
@@ -27,8 +28,6 @@ class Month extends Component{
         for (let i=0;i<=7;i++){
             day_array.push(i);
         }
-
-
 
         const day_component_array=day_array.map((number,index)=>
             <Day 

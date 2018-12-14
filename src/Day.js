@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Note from './Note'
 import Textbox from './Textbox';
-import {Handler} from './App2';
+
 
 class Day extends Component{
     // render events
@@ -32,7 +32,6 @@ class Day extends Component{
     }
 
     onSubmit = (field) => {
-       
         let temp=this.state.note_list;
         temp.push(field);
         this.setState({
@@ -40,7 +39,7 @@ class Day extends Component{
             being_edited: false
         });
   
-        this.props.updateNoteList(this.props.day_number,field);
+        this.props.updateNoteList(this.props.day_number,field,this.props.type);
 
     }
 

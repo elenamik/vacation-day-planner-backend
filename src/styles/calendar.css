@@ -1,0 +1,19 @@
+td{
+	height:50px;
+    background-color:#ddd;
+    word-wrap:break-word;
+    list-style-type: none;
+    padding: 20px;
+    border-collapse:collapse;
+    border: solid thin;
+}
+
+.month-header{
+    background-color:#ccffdd;
+}
+
+.x{
+    background-color:#ddd;  
+    border: solid thin;
+
+}

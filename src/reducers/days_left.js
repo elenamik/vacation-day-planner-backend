@@ -14,8 +14,6 @@ function recursiveSubtract(index,days_left){
     }
  }
 
-
-
 function days_left(days_left = [], action) {
    
     switch(action.type){

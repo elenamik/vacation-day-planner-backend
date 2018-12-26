@@ -9,7 +9,10 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
+        <div className="header">Header</div>
+        <div className="side-panel">Side Panel</div>
         <ReduxBoundCalendar />
+        <div className="footer">Footer</div>
       </Provider>
     );
   }

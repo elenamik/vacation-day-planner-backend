@@ -58,8 +58,8 @@ class Month extends Component{
         return( 
         <div className="month">
             <div className="month-header">
-                <h1>{month_name[month_number]}</h1>
-                <h2>days left: {this.props.days_left}</h2>
+                <div className="month-name">{month_name[month_number]}</div>
+                <div className="days-left">days left: {this.props.days_left}</div>
             </div>
           
             <table>

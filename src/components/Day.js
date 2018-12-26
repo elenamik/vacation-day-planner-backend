@@ -27,7 +27,7 @@ class Day extends Component{
             return(
                 <td onClick={()=>this.handleClick()}>
                     {this.props.day_number}
-                    <div>
+                    <div className="event-text">
                         {this.props.text}
                     </div>
                     

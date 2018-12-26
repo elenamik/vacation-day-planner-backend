@@ -17,7 +17,7 @@ class Calendar extends Component{
         );
 
         return( 
-        <div >
+        <div className="calendar">
             {month_array}
         </div>
         );

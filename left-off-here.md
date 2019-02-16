@@ -19,3 +19,5 @@ post request gets a 404 - url is not found?
 status: updates save to DB!! now I need to load those into the UI upon log in of the user. Right now, the two are not connected.
 So when a user signs in, their respective events are loaded up !!
 So proud of this, actually accomplished so much this weekend
+
+2/11 data cannot be rendered from mongodb because it gets saved in different formats(?) - saving in mongo and saving in ui(?)

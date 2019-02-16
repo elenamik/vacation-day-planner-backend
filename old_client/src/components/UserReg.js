@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Textbox from './Textbox';
 //import {addEvent, updateDaysLeft} from '../actions/actionCreators';
 import store from '../store';
-import {updateUser} from '../actions/actionCreators';
+import {updateUser, loadEventsFromDB, flush} from '../actions/actionCreators';
 import axios from 'axios';
 
 
@@ -28,6 +28,9 @@ class UserReg extends Component{
         
         // dispatch user and events to state
         store.dispatch(updateUser(user_data.name,user_data._id));
+        console.log(user_data.events);
+        store.dispatch(flush())
+        store.dispatch(loadEventsFromDB(user_data.events));
    }
 
     render(){

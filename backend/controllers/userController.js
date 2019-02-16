@@ -22,14 +22,14 @@ exports.updateEvents=async (req,res)=>{
 }
 
 exports.getUserInfo=(req,res) =>{
-    console.log("getting "+req.params.name);
+    console.log("getting info for "+req.params.name);
     User.findOne({name:req.params.name},function(err,result){
         if (result){
             console.log(result)
             res.send(result);
         }
         else{
-            console.log(err)
+            //console.log(err)
             res.send(err);
         }
     });

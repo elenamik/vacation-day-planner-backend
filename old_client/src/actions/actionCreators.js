@@ -1,4 +1,4 @@
-import {ADD_EVENT,UPDATE_DAYS_LEFT,UPDATE_USER} from './actionConstants';
+import {ADD_EVENT,UPDATE_DAYS_LEFT,UPDATE_USER, LOAD_EVENTS_FROM_DB, FLUSH} from './actionConstants';
 
 export function addEvent(month,day,text) {
     return { 
@@ -24,5 +24,18 @@ export function updateUser(name,id){
             id
         }
         
+    }
+}
+
+export function loadEventsFromDB(events){
+    return{
+        type: LOAD_EVENTS_FROM_DB,
+        events
+    }
+}
+
+export function flush(){
+    return{
+        type: FLUSH
     }
 }

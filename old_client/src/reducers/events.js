@@ -1,5 +1,6 @@
-import {ADD_EVENT} from '../actions/actionConstants';
+import {ADD_EVENT,LOAD_EVENTS_FROM_DB,FLUSH} from '../actions/actionConstants';
 //import update from 'immutability-helper';
+import empty_events from '../data/events';
 
 //have some reducer composition for modifying state(refs). display events through props(?)
 
@@ -22,6 +23,9 @@ function events(events = {}, action) {
     const day=action.day;
     const text=action.text;
     switch(action.type){
+        case FLUSH:
+            console.log("flushing");
+            return empty_events;
         case ADD_EVENT:
             
             if (events[month][day]){ ///day already has something, add to exisiting array
@@ -38,7 +42,12 @@ function events(events = {}, action) {
 
             // add method to save to mongoDB whenever there is a change
           
-    
+        case LOAD_EVENTS_FROM_DB:
+            return {
+                ...events,
+                ...action.events[0]
+            }
+
         default:
             return events;
     }

@@ -21,3 +21,18 @@ So when a user signs in, their respective events are loaded up !!
 So proud of this, actually accomplished so much this weekend
 
 2/11 data cannot be rendered from mongodb because it gets saved in different formats(?) - saving in mongo and saving in ui(?)
+
+2/16 - dont account for holidays and weekends in count.
+
+2/16- change days left display to float. fixed size of cells, smaller fonts,delete functionality & re-increment days left.
+
+whats left:
+allow for new user to register(user account flow, watch video)
+user session processing
+saved holidays need to be added to DB entries
+side panel: merge this with options, allow for holidays/days off to be changed here. have a pop up when this first comes up to edit it
+deploy server and front end
+
+
+small things for user experience:
+add for multiple cells(drag). clicking off box will delete it

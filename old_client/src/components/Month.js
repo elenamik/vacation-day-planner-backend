@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Day from './Day';
 import month_name from '../data/month_name.js';
 import day_name from '../data/day_name.js';
+
 /*
 temp logic:
 */
@@ -14,6 +15,7 @@ for (let i=0;i<=6;i++){
 /*
 end of temp logic:
 */
+
 
 function generateDayNumbers(month,year){
     const first_day = new Date(year, month, 1).getDay(); //returns number of day
@@ -38,14 +40,14 @@ function generateDayNumbers(month,year){
 }
 
 
-
 class Month extends Component{
     render(){
         
         const day_numbers=generateDayNumbers(this.props.month_number,this.props.year);
         const month_number=this.props.month_number;
         const day_array=day_numbers.map((day_number,index)=>
-            <Day day_number={day_number} key={index} month_number={month_number} text={this.props.events[day_number]}/>
+        
+            <Day day_number={day_number} index={index} key={index} month_number={month_number} text={this.props.events[day_number]} holiday={this.props.holidays[day_number]}/>
         );
 
         const day_names_array=arr.map((number,index) =>
@@ -59,7 +61,6 @@ class Month extends Component{
         <div className="month">
             <div className="month-header">
                 <div className="month-name">{month_name[month_number]}</div>
-                <div className="days-left">days left: {this.props.days_left}</div>
             </div>
           
             <table>

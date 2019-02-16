@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Month from './Month';
+import holidays from '../data/holidays';
+
 /* 
  temporary logic
 */
@@ -10,15 +12,16 @@ for (let i=0;i<=11;i++){
 
 
 class Calendar extends Component{
-
     render(){
-        console.log(this.props.events);
         const days_left=this.props.days_left;
         const month_array=array.map((month_number,index)=>
-            <Month  month_number={month_number} key={index} days_left={days_left[month_number]} year={2018} events={this.props.events[month_number]}/>
+            <Month  month_number={month_number} key={index} year={2018} events={this.props.events[month_number]} holidays={holidays[month_number]}/>
         );
         return( 
         <div className="calendar">
+            <div className="days-left-text">
+                {this.props.days_left}
+            </div>
             {month_array}
         </div>
         );

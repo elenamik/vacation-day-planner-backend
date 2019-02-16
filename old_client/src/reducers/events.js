@@ -18,13 +18,12 @@ import empty_events from '../data/events';
 */
 
 //anytime an event is changed, save this to mongodb
-function events(events = {}, action) {
+function events(events = empty_events, action) {
     const month=action.month;
     const day=action.day;
     const text=action.text;
     switch(action.type){
         case FLUSH:
-            console.log("flushing");
             return empty_events;
         case ADD_EVENT:
             
@@ -43,6 +42,7 @@ function events(events = {}, action) {
             // add method to save to mongoDB whenever there is a change
           
         case LOAD_EVENTS_FROM_DB:
+            console.log(events);
             return {
                 ...events,
                 ...action.events[0]

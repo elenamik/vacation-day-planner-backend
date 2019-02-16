@@ -4,11 +4,20 @@ import React, { Component } from 'react';
 class Event extends Component{
     
     render(){
-        return(
-            <div className="event-text">
+        if (this.props.type==="holiday"){
+            return(
+                <div className="holiday-text">
                 {this.props.text}
             </div>
-        );  
+            )
+        }
+        else{
+            return(
+                <div className="event-text">
+                    {this.props.text}
+                </div>
+            );  
+        }
     }
 }
 

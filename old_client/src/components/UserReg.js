@@ -28,9 +28,9 @@ class UserReg extends Component{
         
         // dispatch user and events to state
         store.dispatch(updateUser(user_data.name,user_data._id));
-        console.log(user_data.events);
-        store.dispatch(flush())
-        store.dispatch(loadEventsFromDB(user_data.events));
+        //console.log(user_data.events);
+        //store.dispatch(flush())
+        //store.dispatch(loadEventsFromDB(user_data.events));
    }
 
     render(){

@@ -12,7 +12,6 @@ export function addEvent(month,day,text) {
 export function updateDaysLeft(month){
     return {
             type: UPDATE_DAYS_LEFT,
-            month: month,
     }
 }
 

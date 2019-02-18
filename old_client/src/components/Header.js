@@ -44,6 +44,8 @@ class Header extends Component{
                     <div className="options">options
                         <button onClick={()=> this.handleSave(this.props.events,this.props.user.id)}>Save</button>
                     </div>
+               
+
 
             </div>
         );

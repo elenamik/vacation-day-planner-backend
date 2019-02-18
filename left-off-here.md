@@ -24,14 +24,18 @@ So proud of this, actually accomplished so much this weekend
 
 2/16 - dont account for holidays and weekends in count.
 
-2/16- change days left display to float. fixed size of cells, smaller fonts,delete functionality & re-increment days left.
+2/16-  fixed size of cells, smaller fonts,delete functionality & re-increment days left.
 
 whats left:
 allow for new user to register(user account flow, watch video)
 user session processing
 saved holidays need to be added to DB entries
 side panel: merge this with options, allow for holidays/days off to be changed here. have a pop up when this first comes up to edit it
+mobile/ipad/multimedia use looks good
+sanitizing all data
+styling
 deploy server and front end
+testing(?)
 
 
 small things for user experience:

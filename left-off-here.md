@@ -27,9 +27,12 @@ So proud of this, actually accomplished so much this weekend
 2/16- change days left display to float. fixed size of cells, smaller fonts
 
 2/18-delete functionality & re-increment days left. cannot pick up state change when hovering is done. Try again :) onHover=()=>{}
-; worked on this some, the button rendering is faulty and delete button causes too many other problems!!
+; worked on this some, the button rendering is faulty and delete button causes too many other problems!! 
+
+3/1 -
 
 whats left:
+rework the delete button: upon clicking an event, editing comes up
 allow for new user to register(user account flow, watch video)
 user session processing
 saved holidays need to be added to DB entries

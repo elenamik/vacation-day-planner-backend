@@ -11,15 +11,11 @@ class Event extends Component{
             )
         }
         else{
-            
             return(
                 <div className="event-text" >
                     {this.props.text}
                 </div>
             )
-
-            
-           
         }
         
     }

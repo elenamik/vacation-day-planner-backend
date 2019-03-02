@@ -42,6 +42,7 @@ sanitizing all data
 styling
 deploy server and front end
 testing(?)
+rendering is slow - worry about this after deployment
 
 
 small things for user experience:

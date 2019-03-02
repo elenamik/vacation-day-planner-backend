@@ -18,7 +18,7 @@ class Textbox extends Component{
         
     }
     keyPress(event){
-        if(event.keyCode == 13){
+        if(event.keyCode === 13){
             event.preventDefault();
             this.props.onSubmit(this.state.value);
             this.setState(

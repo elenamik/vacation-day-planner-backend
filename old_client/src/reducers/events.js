@@ -1,21 +1,5 @@
 import {ADD_EVENT,LOAD_EVENTS_FROM_DB,FLUSH} from '../actions/actionConstants';
-//import update from 'immutability-helper';
 import empty_events from '../data/events';
-
-//have some reducer composition for modifying state(refs). display events through props(?)
-
-//make more than one even addable later on - store by unique ID, day, and text :)
-/* events: {
-    0:{ 
-        1:"new years day",
-        15:"mlk day"
-    },
-    1:{},
-    2:{},
-    3:{},
-    ....
-    11:{}}
-*/
 
 //anytime an event is changed, save this to mongodb
 function events(events = empty_events, action) {

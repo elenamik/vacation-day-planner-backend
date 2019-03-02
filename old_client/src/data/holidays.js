@@ -5,7 +5,7 @@ const holidays=[
         15:"MLK Day"
     },
     {
-        19:"Presidents Days"
+        19:"Presidents Day"
     },
     {
         30:"Good Friday"
@@ -27,7 +27,7 @@ const holidays=[
         22:"Thanksgiving"
     },
     {
-        25:"Christmans"
+        25:"Christmas"
     }
 ]
 

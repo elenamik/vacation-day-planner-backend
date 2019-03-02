@@ -24,7 +24,10 @@ So proud of this, actually accomplished so much this weekend
 
 2/16 - dont account for holidays and weekends in count.
 
-2/16-  fixed size of cells, smaller fonts,delete functionality & re-increment days left.
+2/16- change days left display to float. fixed size of cells, smaller fonts
+
+2/18-delete functionality & re-increment days left. cannot pick up state change when hovering is done. Try again :) onHover=()=>{}
+; worked on this some, the button rendering is faulty and delete button causes too many other problems!!
 
 whats left:
 allow for new user to register(user account flow, watch video)

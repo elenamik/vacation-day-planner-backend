@@ -68,6 +68,7 @@ td{
     font-size:1em;
     color:#f0f5f5;
     background-color: #004d4d;
+    word-break: break-word;  
     
 }
 .holiday-text{
@@ -81,8 +82,15 @@ td{
 .event-input{
     width:90%;
     font-weight: bold;
-    font-size:14px;
+    font-size:1em;
     color:#f0f5f5;
     background-color: #004d4d;
+    
+}
+
+.delete-button{
+    float: right;
+    font-size:0.5em;
+    font-weight: bold;
 }
 

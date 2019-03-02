@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 
 class Event extends Component{
-    
     render(){
         if (this.props.type==="holiday"){
             return(
@@ -12,12 +11,17 @@ class Event extends Component{
             )
         }
         else{
+            
             return(
-                <div className="event-text">
+                <div className="event-text" >
                     {this.props.text}
                 </div>
-            );  
+            )
+
+            
+           
         }
+        
     }
 }
 

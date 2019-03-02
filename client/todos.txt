@@ -1,0 +1,56 @@
+overall:
+    connect all fields with redux
+
+
+alg:
+    do not decrement if input already present
+    have the alg run based on the current store. have added event trigger 
+        process that re-calculates days left (using the alg)
+        this makes it easier to not count holidays, weekends, multiple days selected, etc
+
+un-numbered days:
+    fade out 
+    make unclickable
+    (have to add type to box)
+
+header: 
+    ability to specify some options - rest of stuff should not be clickable before this
+    day accrual, amount of days
+    
+
+side bar:
+    options image
+    animate the entrance
+    
+calendar:
+    add more than one day
+    display if out of days
+    display total amount of days left - floating
+    wrap input
+    hover over:edit and x options
+    click once to edit
+    double click to show more detail
+
+form:
+    fit to box 
+    make it look prettier - have it pop up like event already
+
+holidays:
+    when added, check to make sure its not holiday or weekend to decrement
+    load holidays (from default,changable in options)
+
+options:
+    color scheme changes
+    edit holidays
+    should render css box that aligns via grid elements, but counts as many days (yikes!)
+    cal grayed out until # of days is made available 
+    check box for accrual options
+    animation of it flying out
+    when scrolling past: shows at top daysleft/total
+    reset button
+    
+
+undo/redo
+slide clickable
+save to account and DB!! - weekend job for sure
+

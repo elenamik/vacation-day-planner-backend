@@ -12,7 +12,10 @@
     grid-column:2/3;
     display:grid;
     grid-template-columns:1fr 1fr;
+}
 
+.flash-message{
+    font-size:12px;
 }
 .username-text{
     grid-column:1/2;

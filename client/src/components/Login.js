@@ -6,7 +6,8 @@ class Login extends Component {
         super(props);
         this.state={
             username:"",
-            password:""
+            password:"",
+            flash_message:""
         }
     this.handleInputChange = this.handleInputChange.bind(this);
     }
@@ -21,7 +22,6 @@ class Login extends Component {
 
     async handleSubmit(event){
       event.preventDefault();
-      console.log('registering user! '+this.state.username+" "+this.state.password);
       await axios({
           method:'post',
           url:'http://localhost:3001/register/',
@@ -30,8 +30,14 @@ class Login extends Component {
               password:this.state.password
           }
       })
-      .then(response=>{
+      .then(response=>{ //if false, print message. if success, render data and log in (react router)
+          console.log(JSON.stringify(response));
           console.log(response.data.message);
+          if (response.data.success===false){
+              this.setState({
+                flash_message:response.data.message
+              })
+          }
       })
       .catch(err=>{
           console.log(err);
@@ -46,6 +52,7 @@ class Login extends Component {
           <input type="text" name="password" value={this.state.value} onChange={this.handleInputChange}/>
           <input type="submit" onSubmit={event=> this.handleSubmit(event)}/>
         </form>
+        <div className="flash-message">{this.state.flash_message}</div>
       </div>
     );
   }

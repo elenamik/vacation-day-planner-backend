@@ -3,6 +3,7 @@
     "text": "dependency on concurrently and scripts go here"
   },
   "dependencies": {
+    "bcrypt": "^3.0.4",
     "body-parser": "^1.18.3",
     "concurrently": "^4.1.0",
     "connect-mongo": "^2.0.3",

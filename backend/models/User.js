@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 
 const userSchema = new mongoose.Schema({
-  name: {
+  username: {
     type: String,
     trim: true,
     // required: 'Please enter name!'

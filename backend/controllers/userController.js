@@ -2,7 +2,7 @@ const events_template =require('../data/events');
 const mongoose = require('mongoose');
 mongoose.Promise=global.Promise; // tells mongo were are using promises AND specifically the built in ES6 promise
 const User = mongoose.model('User');
-const { check, validationResult } = require('express-validator/check')
+const bcrypt = require('bcrypt');
 
 exports.updateEvents=async (req,res)=>{
     console.log ("updating events in mongoDB");
@@ -56,7 +56,7 @@ exports.validate=(req,res,next)=>{
     }
     else{
         console.log(errors);
-        return res.send({
+        return res.json({
             success:false,
             message:"invalid login"
         });
@@ -64,17 +64,50 @@ exports.validate=(req,res,next)=>{
     }
 }
 
-exports.register=(req,res,next)=>{
-    console.log("registering user in DB");
-    
-
-    res.send({message:"registered user in DB"})
+exports.register= async (req,res,next)=>{
+    await User.findOne({username:req.body.username},function(err,result){
+        if (result){
+                // return res.json({
+                //     success:false,
+                //     message:"user already exists"
+                // })
+                return res.json({
+                    success:false,
+                    message:"user already exists"
+                });
+        }  
+        else{
+            const hash = bcrypt.hashSync('myPassword', 10);
+            const user = new User(
+                {
+                    username:req.body.username,
+                    password:hash,
+                    events: events_template
+                }
+            );   
+            user
+                .save() // send to mongo, will return promise
+                .then( () => // if it works, do this
+                    {
+                        return res.json({success: true, message:"registered user"})
+                        // next()
+                    }
+                )
+                .catch( error =>
+                    {
+                        console.log(error);
+                        return res.json({success:false,message:"error registering user"})
+                    }
+                ); //if it errors, do this
+        }
+    })
 }
 
 exports.addUser= (req,res)=>{
+    console.log("ADDING USER ",req.params.name);
     const user = new User(
         {
-            name:req.params.name,
+            username:req.params.name,
             password:"password",
             events: events_template
         }
@@ -91,6 +124,7 @@ exports.addUser= (req,res)=>{
                 console.log(error);
             }
         ); //if it errors, do this
+
 }
 
 // ------------ examples ------------

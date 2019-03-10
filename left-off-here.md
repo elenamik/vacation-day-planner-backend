@@ -34,7 +34,7 @@ user session processing
 saved holidays need to be added to DB entries
 side panel: merge this with options, allow for holidays/days off to be changed here. have a pop up when this first comes up to edit it
 mobile/ipad/multimedia use looks good
-sanitizing all data
+sanitizing all data, ambiguous failure messages
 styling
 deploy server and front end
 testing(?)

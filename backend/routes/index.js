@@ -10,9 +10,11 @@ router.get('/', catchErrors(Controller.getData));
 
 router.get('/getUsers', userController.getUsers);
 router.get('/addUser/:name', userController.addUser);
-router.get('/getUserInfo/:name',userController.getUserInfo)
+router.get('/getUserInfo/:name',userController.getUserInfo);
 
-router.post('/updateEvents/',userController.updateEvents)
+router.post('/updateEvents/',userController.updateEvents);
+
+router.post('/register',userController.validate,userController.register);
 
 module.exports = router;
 

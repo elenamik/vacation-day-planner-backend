@@ -11,13 +11,16 @@
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
+    "express-validator": "^5.3.1",
     "mongoose": "^5.4.3"
   },
   "name": "MERN-bootstrap",
   "description": "Boiler plate for a react, express, and mongoDB app.",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently \"cd backend && node server.js\" \"cd client && npm start\""

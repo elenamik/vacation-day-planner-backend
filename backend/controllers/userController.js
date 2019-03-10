@@ -2,6 +2,7 @@ const events_template =require('../data/events');
 const mongoose = require('mongoose');
 mongoose.Promise=global.Promise; // tells mongo were are using promises AND specifically the built in ES6 promise
 const User = mongoose.model('User');
+const { check, validationResult } = require('express-validator/check')
 
 exports.updateEvents=async (req,res)=>{
     console.log ("updating events in mongoDB");
@@ -15,10 +16,7 @@ exports.updateEvents=async (req,res)=>{
         else{
             console.log(err);
         }
-    })
-    
-
-    
+    }) 
 }
 
 exports.getUserInfo=(req,res) =>{
@@ -33,11 +31,44 @@ exports.getUserInfo=(req,res) =>{
     });
 }
 
-
 exports.getUsers= async(req,res)=>{
     const users = await User.find();
     res.body=users;
     res.send(users); 
+}
+
+exports.validate=(req,res,next)=>{
+    console.log(req.body)
+    req.sanitizeBody('username').escape();
+    req.sanitizeBody('password').escape();
+    req.sanitizeBody('username').trim();
+    req.sanitizeBody('password').trim();
+    req.checkBody('username','invalid login').isAlphanumeric().isLength({min:3});
+    req.checkBody('password').isLength({min:5});
+
+    const errors=req.validationErrors();
+    if (!errors){
+        next();
+            // return res.send({
+            //     success:true,
+            //     message:"valid login"
+            // }
+    }
+    else{
+        console.log(errors);
+        return res.send({
+            success:false,
+            message:"invalid login"
+        });
+        //return to ui with error
+    }
+}
+
+exports.register=(req,res,next)=>{
+    console.log("registering user in DB");
+    
+
+    res.send({message:"registered user in DB"})
 }
 
 exports.addUser= (req,res)=>{
@@ -61,7 +92,6 @@ exports.addUser= (req,res)=>{
             }
         ); //if it errors, do this
 }
-
 
 // ------------ examples ------------
 // exports.homePage = (req, res) => {

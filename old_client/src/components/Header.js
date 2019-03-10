@@ -3,7 +3,6 @@ import Textbox from './Textbox';
 //import {addEvent, updateDaysLeft} from '../actions/actionCreators';
 //import store from '../store';
 import UserReg from './UserReg';
-import Login from "./Login";
 import axios from 'axios';
 
 
@@ -45,7 +44,6 @@ class Header extends Component{
                     <div className="options">options
                         <button onClick={()=> this.handleSave(this.props.events,this.props.user.id)}>Save</button>
                     </div>
-                    <Login/>
             </div>
         );
     }

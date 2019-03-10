@@ -26,6 +26,8 @@ So proud of this, actually accomplished so much this weekend
 
 2/16-  fixed size of cells, smaller fonts,delete functionality & re-increment days left.
 
+3/10 - split controller into two (events and authentication)
+
 whats left:
 allow for new user to register(user account flow, watch video)
 user session processing

@@ -31,7 +31,7 @@ require('./models/User');
 //const expressValidator = require('express-validator');
 
 // Exposes a bunch of methods for validating data. Used heavily on userController.validateRegister
-app.use(expressValidator());
+
 
 
 // // Passport JS is what we use to handle our logins
@@ -62,6 +62,7 @@ const express = require('express');
 //const session = require('express-session');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const expressValidator=require('express-validator');
 
 // home-made routes
 const routes = require('./routes/index');
@@ -80,6 +81,8 @@ app.use(cors());
 
 // populates req.cookies with any cookies that came along with the request
 app.use(cookieParser());
+
+app.use(expressValidator());
 
 // Handle our own routes
 app.use('/', routes);

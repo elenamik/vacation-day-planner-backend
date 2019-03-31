@@ -7,6 +7,7 @@ const expressValidator=require('express-validator');
 const session = require('express-session')
 const logger = require('morgan');
 
+require('./models/User'); //models must come before routes are included
 const indexRouter = require('./routes/index');
 
 
@@ -21,14 +22,8 @@ mongoose.connect(process.env.DATABASE,
   ()=> {console.log("connected to MongoDB")},
   (err)=>{console.log(err);}
 );
-
 mongoose.Promise = global.Promise;
 const db = mongoose.connection
-
-
-require('./models/User');
-
-
 const app = express();
 
 app.use(logger('dev'));

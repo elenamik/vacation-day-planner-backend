@@ -13,6 +13,18 @@ const userSchema = new mongoose.Schema({
   }
 });
 
+userSchema.methods.comparePassword=function(candidatePassword,callback){
+    bcrypt.compare(candidatePassword,this.password,(err,isMatch)=>{
+            if (err){
+                console.log('bcrypt hash compare failed');
+                return callback(err);
+            }
+            callback(null,isMatch);
+    });
+}
+    
+
+
 userSchema.pre('save',function(next){
     var user=this;
     bcrypt.hash(user.password,10, function(err,hash){

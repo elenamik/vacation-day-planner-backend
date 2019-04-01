@@ -3,11 +3,6 @@ mongoose.Promise = global.Promise;
 const User = mongoose.model('User');
 
 
-exports.login= (req,res,next)=>{
-    console.log("logging in");
-    res.send({success:true});
-}
-
 exports.register= async (req,res,next)=>{
     console.log("registering",req.body.username);
     await User.findOne({username:req.body.username}, 

@@ -1,4 +1,3 @@
-
 const createError = require('http-errors');
 const express = require('express');
 const bodyParser=require('body-parser');
@@ -6,26 +5,24 @@ const cookieParser = require('cookie-parser');
 const expressValidator=require('express-validator');
 const session = require('express-session')
 const logger = require('morgan');
-
-require('./models/User'); //models must come before routes are included
-const indexRouter = require('./routes/index');
-
-
-require('dotenv').config({ path: 'variables.env' });
-
-
 const mongoose=require('mongoose');
 const MongoStore = require('connect-mongo')(session);
+require('dotenv').config({ path: 'config/variables.env' });
+mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE, 
   {useNewUrlParser: true})
 .then(
   ()=> {console.log("connected to MongoDB")},
   (err)=>{console.log(err);}
 );
-mongoose.Promise = global.Promise;
-const db = mongoose.connection
-const app = express();
 
+require('./models/User'); //models must come before routes are included
+const indexRouter = require('./routes/index');
+
+const passport=require('passport');
+require('./config/passport');
+
+const app = express();
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -36,12 +33,16 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+const database = mongoose.connection;
 app.use(session({
-  secret: 'my-secret',
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
-  store: new MongoStore({ mongooseConnection: db })
+  store: new MongoStore({ mongooseConnection: database })
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', indexRouter);
 
@@ -61,7 +62,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-// launch our backend into a port
+// launch backend into a port
 const API_PORT=3001;
 app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
 

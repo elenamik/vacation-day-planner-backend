@@ -1,5 +1,11 @@
 const passport=require('passport');
 
+exports.logout=(req,res)=>{
+    console.log('logging out user');
+    req.logout();
+    res.send({success:true});
+}
+
 exports.login= (req,res,next)=>{
     passport.authenticate('local',(err,user)=>{
         if (err){

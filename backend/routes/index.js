@@ -16,8 +16,12 @@ router.post('/login',
 
 router.post('/register', 
   authController.validateLogin,
-  userController.register
+  userController.register,
+  authController.login
 );
-//add a log in step to register
+
+router.post('/logout',
+  authController.logout
+);
 
 module.exports = router;

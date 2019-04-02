@@ -13,6 +13,8 @@ const userSchema = new mongoose.Schema({
   }
 });
 
+
+//note: cannot use es6 ()=> notation here because 'this' will change context
 userSchema.methods.comparePassword=function(candidatePassword,callback){
     bcrypt.compare(candidatePassword,this.password,(err,isMatch)=>{
             if (err){
@@ -23,8 +25,6 @@ userSchema.methods.comparePassword=function(candidatePassword,callback){
     });
 }
     
-
-
 userSchema.pre('save',function(next){
     var user=this;
     bcrypt.hash(user.password,10, function(err,hash){

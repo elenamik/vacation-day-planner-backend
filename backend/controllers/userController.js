@@ -4,7 +4,6 @@ const User = mongoose.model('User');
 
 
 exports.register= async (req,res,next)=>{
-    console.log("registering",req.body.username);
     await User.findOne({username:req.body.username}, 
         (err,result)=>{
             if (err){
@@ -29,10 +28,7 @@ exports.register= async (req,res,next)=>{
                 });
                 user.save()
                 .then(()=>{
-                    res.send({
-                        success:true,
-                        message:"registered user"
-                    })
+                    next();
                 })
                 .catch(err =>{
                     console.log(err);

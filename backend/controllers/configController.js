@@ -83,25 +83,25 @@ exports.updateHolidays=(req,res,next)=>{
 }
 
 
-exports.updateEvents=(req,res,next)=>{
-    Events.findByIdAndUpdate(
-        {
-            _id:req.body.eventsid
-        },
-        {$set:{
-            events:req.body.events
-        }}
-    ).then(()=>{
-        console.log("updated events");
-        res.send({
-            success:true,
-            message:"event updated successfully in DB"
-        });
-    }).catch(err =>{
-        console.log(err);
-        res.send({
-            success:false,
-            message:"event did not update in DB"
-        })
-    })
-}
+// exports.updateEvents=(req,res,next)=>{
+//     Events.findByIdAndUpdate(
+//         {
+//             _id:req.body.eventsid
+//         },
+//         {$set:{
+//             events:req.body.events
+//         }}
+//     ).then(()=>{
+//         console.log("updated events");
+//         res.send({
+//             success:true,
+//             message:"event updated successfully in DB"
+//         });
+//     }).catch(err =>{
+//         console.log(err);
+//         res.send({
+//             success:false,
+//             message:"event did not update in DB"
+//         })
+//     })
+// }

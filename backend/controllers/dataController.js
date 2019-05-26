@@ -24,6 +24,8 @@ exports.updateEvents=(req,res,next)=>{
     req.body.eventsid='5cae8972cc086f7cfa99d525';
     
     /// CHANGE AFTER UI CONNECTED
+
+    
     Events.findByIdAndUpdate(
         {
             _id:req.body.eventsid
@@ -46,37 +48,37 @@ exports.updateEvents=(req,res,next)=>{
     })
 }
 
-exports.test=(req,res)=>{
-    const config= new Config({
-        userid:'ussrIdfjsdflxyz',
-        vacationDay:20,
-        weeklyDaysOff:'1000001',
-        holidays:[
-            {
-                name:'New Years Eve',
-                date:{
-                    month:2,
-                    day:4
-                }
-            }
-        ]
-    });
-    console.log(config);
-    const events=new Events({
-        id:'useridsdfsdjkl',
-        events:[
-            {
-                name:'Aruba',
-                date:{
-                    month:3,
-                    day:5
-                }
-            }
-        ]
-    })
-    console.log(events);
-    res.send({success:true});
-}
+// exports.test=(req,res)=>{
+//     const config= new Config({
+//         userid:'ussrIdfjsdflxyz',
+//         vacationDay:20,
+//         weeklyDaysOff:'1000001',
+//         holidays:[
+//             {
+//                 name:'New Years Eve',
+//                 date:{
+//                     month:2,
+//                     day:4
+//                 }
+//             }
+//         ]
+//     });
+//     console.log(config);
+//     const events=new Events({
+//         id:'useridsdfsdjkl',
+//         events:[
+//             {
+//                 name:'Aruba',
+//                 date:{
+//                     month:3,
+//                     day:5
+//                 }
+//             }
+//         ]
+//     })
+//     console.log(events);
+//     res.send({success:true});
+// }
 
 exports.fetchUserData= async (req,res,next)=>{
     console.log('fetching user data');

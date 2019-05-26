@@ -84,7 +84,8 @@ app.use('/', indexRouter);
 
 // launch backend into a port
 const API_PORT=3001;
-const server=app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
+// const server=app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
+const server=app.listen(process.env.PORT || API_PORT)
 
 module.exports = app;
 

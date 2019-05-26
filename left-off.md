@@ -1,4 +1,5 @@
-nodemon run server.js - dev server
+start dev server: nodemon run server.js
+check heroku logs: heroku logs --tail
 
 tasks:
 - creating/registering a simple user

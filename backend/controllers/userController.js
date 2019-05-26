@@ -2,6 +2,30 @@ const mongoose=require('mongoose');
 mongoose.Promise = global.Promise;
 const User = mongoose.model('User');
 
+exports.createFirstUser=(req,res)=>{
+    const user=new User({
+        username:req.body.username,
+        password:req.body.password
+    });
+    user.save()
+    .then(()=>{
+        //delete user.password;
+        req.body.user=user;
+        res.send({
+            success:true,
+            message:'registered user'
+        })
+    })
+    .catch(err =>{
+        console.log(err);
+        res.send(
+            {sucess:false, 
+            message:"could not register user at this time"}
+        );
+    });
+    
+}
+
 
 exports.register= async (req,res,next)=>{
     await User.findOne({username:req.body.username}, 
@@ -28,6 +52,8 @@ exports.register= async (req,res,next)=>{
                 });
                 user.save()
                 .then(()=>{
+                    user.password=null;
+                    req.body.user=user;
                     next();
                 })
                 .catch(err =>{
@@ -42,3 +68,12 @@ exports.register= async (req,res,next)=>{
         }
     )
 };
+
+exports.returnUser=(req,res)=>{
+    res.send({
+        success:true,
+        user:req.body.user,
+        events:req.body.events,
+        config:req.body.config
+    })
+}

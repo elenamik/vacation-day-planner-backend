@@ -2,7 +2,8 @@ var express = require('express');
 var router = express.Router();
 const userController=require('../controllers/userController');
 const authController=require('../controllers/authController');
-const passport=require('passport');
+const dataController=require('../controllers/dataController');
+const configController=require('../controllers/configController');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -11,17 +12,26 @@ router.get('/', (req, res, next) => {
 
 router.post('/login', 
   authController.validateLogin,
-  authController.login
+  authController.authenticate,
+  dataController.fetchUserData,
+  userController.returnUser
 );
 
 router.post('/register', 
   authController.validateLogin,
   userController.register,
-  authController.login
+  dataController.generateDefaultData,
+  userController.returnUser
 );
 
 router.post('/logout',
   authController.logout
 );
+
+router.post('/updateEvents',dataController.updateEvents);
+router.post('/updateWeeklyDaysOff',configController.updateWeeklyDaysOff);
+router.post('/updateVacationDays',configController.updateVacationDays);
+router.post('/updateHolidays',configController.updateHolidays);
+router.post('/createFirstUser',userController.createFirstUser);
 
 module.exports = router;

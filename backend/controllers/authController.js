@@ -1,12 +1,7 @@
 const passport=require('passport');
 
-exports.logout=(req,res)=>{
-    console.log('logging out user');
-    req.logout();
-    res.send({success:true});
-}
 
-exports.login= (req,res,next)=>{
+exports.authenticate=(req,res,next)=>{
     passport.authenticate('local',(err,user)=>{
         if (err){
             console.log(err);
@@ -18,10 +13,50 @@ exports.login= (req,res,next)=>{
         if (user){
                 console.log("user is authenticated");
                 //need to give authentication token
+                user.password=null;
+                req.body.user=user;
+                next();
+        }
+        else{
+            console.log("invalid username or password");
+            res.send({
+                success:false,
+                message: "invalid username or password"
+            });
+        }
+    })(req,res); //req,res,next must be passed here for passport to call strategy
+}
+
+
+exports.logout=(req,res)=>{
+    console.log('logging out user');
+    req.logout();
+    res.send({success:true});
+}
+
+exports.login_old= (req,res)=>{
+    passport.authenticate('local',(err,user)=>{
+        if (err){
+            console.log(err);
+            res.send({
+                success:false,
+                message:'authentication failed'
+            });
+        }
+        if (user){
+                console.log("user is authenticated");
+                //need to give authentication token
+
+                userUIData={
+                    userid:req.body.user._id,
+                    username:req.body.user.username,
+
+                }
+
                 res.send({
                     success:true,
                     message:'signed in successfully',
-                    id:user._id
+                    user:req.body.user
                 });
         }
         else{
@@ -31,7 +66,7 @@ exports.login= (req,res,next)=>{
                 message: "invalid username or password"
             });
         }
-    })(req,res,next); //req,res,next must be passed
+    })(req,res); //req,res,next must be passed here for passport to call strategy
 }
 
 exports.validateLogin=(req,res,next)=>{

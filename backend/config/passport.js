@@ -16,6 +16,9 @@ passport.use(new LocalStrategy(
                         throw err;
                     }
                     if (isMatch){
+                        console.log('passport',user);
+                        user.password=null;
+                        console.log('passport',user);
                         return done(null,user);
                     }
                     else{

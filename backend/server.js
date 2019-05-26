@@ -9,14 +9,33 @@ const mongoose=require('mongoose');
 const MongoStore = require('connect-mongo')(session);
 require('dotenv').config({ path: 'config/variables.env' });
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.DATABASE, 
-  {useNewUrlParser: true})
+
+const options = {
+  useNewUrlParser: true,
+}
+
+
+mongoose.connect(process.env.DATABASE, options)
 .then(
   ()=> {console.log("connected to MongoDB")},
   (err)=>{console.log(err);}
 );
 
+// When the mongodb server goes down, mongoose emits a 'disconnected' event
+mongoose.connection.on('disconnected', () => { console.log('-> lost connection'); });
+// The driver tries to automatically reconnect by default, so when the
+// server starts the driver will reconnect and emit a 'reconnect' event.
+mongoose.connection.on('reconnect', () => { console.log('-> reconnected'); });
+
+// Mongoose will also emit a 'connected' event along with 'reconnect'. These
+// events are interchangeable.
+mongoose.connection.on('connected', () => { console.log('-> connected'); });
+
+
+
 require('./models/User'); //models must come before routes are included
+require('./models/Config');
+require('./models/Events');
 const indexRouter = require('./routes/index');
 
 const passport=require('passport');
@@ -46,24 +65,40 @@ app.use(passport.session());
 
 app.use('/', indexRouter);
 
-// catch 404 and forward to error handler
-app.use((req, res, next) =>{
-  next(createError(404));
-});
+// **** Error handling switched off. UNCOMMENT FOR PROD
+// // catch 404 and forward to error handler
+// app.use((req, res, next) =>{
+//   next(createError(404));
+// });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
+// app.use(function(err, req, res, next) {
+//   // set locals, only providing error in development
+//   res.locals.message = err.message;
+//   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.send('error');
-});
+//   // render the error page
+//   res.status(err.status || 500);
+//   res.send('error');
+// });
 
 // launch backend into a port
 const API_PORT=3001;
-app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
+const server=app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
 
 module.exports = app;
+
+//graceful shutdown
+process.on('SIGTERM', () => {
+  console.info('SIGTERM signal received.');
+  console.log('Closing http server.');
+  server.close(() => {
+    console.log('Http server closed.');
+  });
+   // boolean means [force], see in mongoose doc
+   mongoose.connection.close(() => {
+    console.log('MongoDb connection closed.');
+  });
+
+  process.exit(0);
+});

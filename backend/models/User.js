@@ -1,21 +1,42 @@
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
+const bcrypt = require('bcryptjs');
 
 const userSchema = new mongoose.Schema({
-  name: {
+  username: {
     type: String,
     trim: true,
-    // required: 'Please enter name!'
   },
   password: {
     type: String,
-    // required: 'Please enter name!'
-  },
-  events: [Object]
+    trim: true
+  }
 });
 
-// userSchema.pre('save', function(next) {
-//   next();
-// });
+
+//note: cannot use es6 ()=> notation here because 'this' will change context
+userSchema.methods.comparePassword=function(candidatePassword,callback){
+    bcrypt.compare(candidatePassword,this.password,(err,isMatch)=>{
+            if (err){
+                console.log('bcrypt hash compare failed');
+                return callback(err);
+            }
+            callback(null,isMatch);
+    });
+}
+    
+userSchema.pre('save',function(next){
+    var user=this;
+    bcrypt.hash(user.password,10, function(err,hash){
+        if (err){
+            console.log("error in bycrypt");
+             next(err);   
+        }
+        else{
+            user.password=hash;
+            next();
+        }
+    })
+});
 
 module.exports = mongoose.model('User', userSchema);

@@ -1,18 +1,37 @@
-const express = require('express');
-const router = express.Router();
-const userController = require('../controllers/userController');
+var express = require('express');
+var router = express.Router();
+const userController=require('../controllers/userController');
+const authController=require('../controllers/authController');
+const dataController=require('../controllers/dataController');
+const configController=require('../controllers/configController');
 
-/* ----------------- error handling -----------------
-const { catchErrors } = require('../handlers/errorHandlers');
-usage:
-router.get('/', catchErrors(Controller.getData));
------------------ end of error handling ----------------- */
+/* GET home page. */
+router.get('/', (req, res, next) => {
+  res.send({success:true});
+});
 
-router.get('/getUsers', userController.getUsers);
-router.get('/addUser/:name', userController.addUser);
-router.get('/getUserInfo/:name',userController.getUserInfo)
+router.post('/login', 
+  authController.validateLogin,
+  authController.authenticate,
+  dataController.fetchUserData,
+  userController.returnUser
+);
 
-router.post('/updateEvents/',userController.updateEvents)
+router.post('/register', 
+  authController.validateLogin,
+  userController.register,
+  dataController.generateDefaultData,
+  userController.returnUser
+);
+
+router.post('/logout',
+  authController.logout
+);
+
+router.post('/updateEvents',dataController.updateEvents);
+router.post('/updateWeeklyDaysOff',configController.updateWeeklyDaysOff);
+router.post('/updateVacationDays',configController.updateVacationDays);
+router.post('/updateHolidays',configController.updateHolidays);
+router.post('/createFirstUser',userController.createFirstUser);
 
 module.exports = router;
-

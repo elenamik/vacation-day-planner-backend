@@ -34,4 +34,6 @@ router.post('/updateVacationDays',configController.updateVacationDays);
 router.post('/updateHolidays',configController.updateHolidays);
 router.post('/createFirstUser',userController.createFirstUser);
 
+router.get('/testApp',dataController.test)
+
 module.exports = router;

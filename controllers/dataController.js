@@ -48,6 +48,12 @@ exports.updateEvents=(req,res,next)=>{
     })
 }
 
+exports.test=(req,res)=>{
+    res.send({
+        success:true
+    })
+}
+
 // exports.test=(req,res)=>{
 //     const config= new Config({
 //         userid:'ussrIdfjsdflxyz',

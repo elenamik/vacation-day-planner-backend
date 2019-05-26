@@ -1,4 +1,4 @@
-npm run server.js - dev server
+nodemon run server.js - dev server
 
 tasks:
 - creating/registering a simple user
@@ -6,9 +6,10 @@ tasks:
 - add default events and configs for users
 - add endpoints to edit events and configs
 
-- protect endpoints with authentication
-- consider deployment??
+- > deployment
+
 - implement preliminary ui/basic styling
+- protect endpoints with authentication - once app is aware of user, make sure a req.user is defined
 - incorporate modals
 - add tests
 

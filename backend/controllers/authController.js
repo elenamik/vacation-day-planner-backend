@@ -27,6 +27,20 @@ exports.authenticate=(req,res,next)=>{
     })(req,res); //req,res,next must be passed here for passport to call strategy
 }
 
+exports.isLoggedIn=(req,res,next)=>{
+    if (req.isAuthenticated()){
+        print("AUTHENTICATED")
+        next()
+    }
+    else{
+        console.log("IS NOT LOGGED IN")
+        res.send(
+            {sucess:false, 
+            message:"user is not authenticated"}
+        );
+    }
+}
+
 
 exports.logout=(req,res)=>{
     console.log('logging out user');

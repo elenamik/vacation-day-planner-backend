@@ -8,6 +8,7 @@ const logger = require('morgan');
 const mongoose=require('mongoose');
 const MongoStore = require('connect-mongo')(session);
 require('dotenv').config({ path: 'config/variables.env' });
+const cors=requre('cors');
 mongoose.Promise = global.Promise;
 
 const options = {
@@ -62,6 +63,7 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cors());
 
 app.use('/', indexRouter);
 

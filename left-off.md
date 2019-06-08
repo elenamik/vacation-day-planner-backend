@@ -1,5 +1,6 @@
 start dev server: nodemon run server.js
 check heroku logs: heroku logs --tail
+push to herokeu: git push heroku master
 
 tasks:
 - creating/registering a simple user

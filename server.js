@@ -8,7 +8,7 @@ const logger = require('morgan');
 const mongoose=require('mongoose');
 const MongoStore = require('connect-mongo')(session);
 require('dotenv').config({ path: 'config/variables.env' });
-const cors=requre('cors');
+const cors=require('cors');
 mongoose.Promise = global.Promise;
 
 const options = {
